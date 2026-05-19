@@ -51,11 +51,21 @@ Decoder::~Decoder()
 
 void Decoder::praseFrame(AVFrame* avFrame)
 {
-    QImage img(mWidth, mHeight, QImage::Format_RGB888);
-    uint8_t* dest[4] = {img.bits(), nullptr, nullptr, nullptr};
-    int linesize[4] = {static_cast<int>(img.bytesPerLine()), 0, 0, 0};
-    sws_scale(mSwsCtx, avFrame->data, avFrame->linesize, 0, mHeight, dest, linesize);
-    emit signalNewFrame(img);
+    VideoFrame *videoFrame = new VideoFrame;
+    videoFrame->data.resize(mWidth * mHeight * 3 / 2); // 保证 mWidth * mHeight 一定偶数
+    uint8_t *dstY  = videoFrame->data.data();
+    uint8_t *dstUV = videoFrame->data.data() + mWidth * mHeight;
+    for (int i = 0; i < mHeight; ++i) {
+        memcpy(dstY + i * mWidth, avFrame->data[0] + i * avFrame->linesize[0], mWidth);
+    }
+
+    for (int i = 0; i < mHeight / 2; ++i) {
+        memcpy(dstUV + i * mWidth, avFrame->data[1] + i * avFrame->linesize[1], mWidth);
+    }
+
+    videoFrame->height = mHeight;
+    videoFrame->width = mWidth;
+    emit signalNewFrame(videoFrame);
 }
 
 // 解码大概花费6ms, 30fps 足够用了
