@@ -1,0 +1,24 @@
+﻿
+2026-05-22 17:17:26.962 DEBUG [26372] [VideoWidget::initializeGL@60] initializeGL called.
+2026-05-22 17:17:26.972 DEBUG [26372] [VideoWidget::resizeGL@143] resizeGL, window_W = 479, window_H = 713
+2026-05-22 17:17:27.169 DEBUG [26372] [VideoWidget::resizeGL@143] resizeGL, window_W = 1499, window_H = 979
+2026-05-22 17:26:25.465 DEBUG [27132] [VideoWidget::initializeGL@60] initializeGL called.
+2026-05-22 17:26:25.473 DEBUG [27132] [VideoWidget::resizeGL@143] resizeGL, window_W = 479, window_H = 713
+2026-05-22 17:26:25.658 DEBUG [27132] [VideoWidget::resizeGL@143] resizeGL, window_W = 1499, window_H = 979
+2026-05-22 17:26:29.806 DEBUG [12428] [VideoWidget::initializeGL@60] initializeGL called.
+2026-05-22 17:26:29.816 DEBUG [12428] [VideoWidget::resizeGL@143] resizeGL, window_W = 479, window_H = 713
+2026-05-22 17:26:29.982 DEBUG [12428] [VideoWidget::resizeGL@143] resizeGL, window_W = 1499, window_H = 979
+2026-05-22 17:26:31.459 DEBUG [12428] [VideoWidget::resizeGL@143] resizeGL, window_W = 479, window_H = 713
+2026-05-22 17:26:34.637 DEBUG [30364] [VideoWidget::initializeGL@60] initializeGL called.
+2026-05-22 17:26:34.647 DEBUG [30364] [VideoWidget::resizeGL@143] resizeGL, window_W = 479, window_H = 713
+2026-05-22 17:26:34.835 DEBUG [30364] [VideoWidget::resizeGL@143] resizeGL, window_W = 1499, window_H = 979
+2026-05-22 17:26:36.001 DEBUG [30364] [VideoWidget::resizeGL@143] resizeGL, window_W = 479, window_H = 713
+2026-05-22 17:26:40.722 DEBUG [29396] [VideoWidget::initializeGL@60] initializeGL called.
+2026-05-22 17:26:40.757 DEBUG [29396] [VideoWidget::resizeGL@143] resizeGL, window_W = 479, window_H = 713
+2026-05-22 17:26:40.937 DEBUG [29396] [VideoWidget::resizeGL@143] resizeGL, window_W = 1499, window_H = 979
+2026-05-22 17:26:42.060 DEBUG [29396] [VideoWidget::resizeGL@143] resizeGL, window_W = 479, window_H = 713
+2026-05-22 17:30:38.480 DEBUG [22636] [VideoWidget::initializeGL@60] initializeGL called.
+2026-05-22 17:30:38.490 DEBUG [22636] [VideoWidget::resizeGL@143] resizeGL, window_W = 479, window_H = 713
+2026-05-22 17:30:38.512 DEBUG [22636] [VideoWidget::resizeGL@143] resizeGL, window_W = 1499, window_H = 979
+2026-05-22 17:30:44.246 DEBUG [22636] [VideoWidget::resizeGL@143] resizeGL, window_W = 479, window_H = 713
+2026-05-22 17:30:54.098 DEBUG [22636] [VideoWidget::resizeGL@143] resizeGL, window_W = 1499, window_H = 979

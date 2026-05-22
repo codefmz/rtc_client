@@ -55,7 +55,6 @@ private:
 
     std::atomic<bool> mIsSend;
     std::shared_ptr<Decoder> mDecoder;
-
 };
 
 #endif // WEBRTC_H

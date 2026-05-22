@@ -63,7 +63,7 @@ void VideoWidget::initializeGL()
     glEnable(GL_DEPTH_TEST);
 
     std::ifstream vShaderFile;
-    std::string vsFilePath = std::string(RES_DIR) + "//shader//shader.vs";
+    std::string vsFilePath = std::string(RES_DIR) + "/res/shader/shader.vs";
     vShaderFile.open(vsFilePath);
     if (!vShaderFile.is_open()) {
         PLOGE << "Failed to open vertex shader file:" << vsFilePath.c_str();
@@ -75,7 +75,7 @@ void VideoWidget::initializeGL()
     vShaderFile.close();
 
     std::ifstream fShaderFile;
-    std::string fsFilePath = std::string(RES_DIR) + "//shader.fs";
+    std::string fsFilePath = std::string(RES_DIR) + "/res/shader/shader.fs";
     fShaderFile.open(fsFilePath);
     if (!fShaderFile.is_open()) {
         PLOGE << "Failed to open fragment shader file:" << fsFilePath.c_str();

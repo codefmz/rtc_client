@@ -24,24 +24,20 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    static MainWindow *getInstance() {
-        static MainWindow instance;
-        return &instance;
-    }
+    MainWindow(QWidget *parent = nullptr);
+    ~MainWindow();
 
 public slots:
     void slotShowVideo(VideoFrame *frame);
+    void connectBtn_toggled(bool isChecked);
 
 private:
-    MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
 
     void openVideo();
     void createConnections();
     void connectServer();
     void disConnectServer();
     void addImage(const QString &file);
-    void connectBtn_toggled(bool isChecked);
     void showVideoBtn_toggled(bool isChecked);
     void slotAddImgs();
     void queryVideoDevs();

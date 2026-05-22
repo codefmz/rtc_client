@@ -6,7 +6,7 @@
 #include <nlohmann/json.hpp>
 #include <utils.h>
 #include "RtcPacket.h"
-#include <QDebug>
+#include "plog/Log.h"
 
 #pragma comment(lib, "ws2_32.lib")
 
@@ -59,22 +59,22 @@ int Webrtc::connectServer(const std::string &ipAddr)
     std::promise<void> wsPromise;
     auto wsFuture = wsPromise.get_future();
     ws->onOpen([&wsPromise]() {
-        qDebug() << " open ws success.";
+        PLOGD << " open ws success.";
         wsPromise.set_value();
     });
 
     ws->onError([&wsPromise](std::string s) {
-        qDebug() << "WebSocket error, info : " << s;
+        PLOGD << "WebSocket error, info : " << s;
         wsPromise.set_exception(std::make_exception_ptr(std::runtime_error(s)));
     });
 
     ws->onClosed([]() {
-        qDebug() << "Client WebSocket: Closed";
+        PLOGD << "Client WebSocket: Closed";
     });
 
     ws->onMessage([this](variant<binary, string> message) {
         if (holds_alternative<string>(message)) {
-            qInfo() << "WebSocketServer: Received string message: " << std::get<string>(message);
+            PLOGD << "WebSocketServer: Received string message: " << std::get<string>(message);
             json data = json::parse(std::get<std::string>(message));
             auto it = data.find("id");
             if (it == data.end()) {
@@ -97,7 +97,7 @@ int Webrtc::connectServer(const std::string &ipAddr)
                 pc->addRemoteCandidate(rtc::Candidate(sdp, mid));
             }
         } else {
-            qDebug() << " websocket received bytes.";
+            PLOGD << " websocket received bytes.";
         }
     });
 
@@ -106,7 +106,7 @@ int Webrtc::connectServer(const std::string &ipAddr)
         ws->open(url);
         wsFuture.get(); //等待websocket 连接成功
     } catch (const std::exception& ex) {
-        qDebug() << "Future raised exception: " << ex.what();
+        PLOGD << "Future raised exception: " << ex.what();
         return -1;
     }
 
@@ -116,18 +116,18 @@ int Webrtc::connectServer(const std::string &ipAddr)
 
     pc->onTrack([this](shared_ptr<Track> t) {
         string mid = t->mid();
-        qDebug() << "Track 2: Received track with mid = " << mid;
+        PLOGD << "Track 2: Received track with mid = " << mid;
         if (mid != "video") {
-            qDebug() << "Wrong track mid";
+            PLOGD << "Wrong track mid";
             return;
         }
 
         t->onOpen([mid]() {
-            qDebug() << "Track 2: Track with mid = " << mid << " opened.";
+            PLOGD << "Track 2: Track with mid = " << mid << " opened.";
         });
 
         t->onClosed([this, mid]() {
-            qDebug() << "Track 2: Track with mid = " << mid << " closed.";
+            PLOGD << "Track 2: Track with mid = " << mid << " closed.";
             track = nullptr;
         });
 
@@ -146,7 +146,7 @@ int Webrtc::connectServer(const std::string &ipAddr)
     wsFuture = wsPromise.get_future();
 
     dataDc->onOpen([&wsPromise]() {
-        qDebug() << "DataChannel from server open.";
+        PLOGD << "DataChannel from server open.";
         wsPromise.set_value();
     });
 
@@ -156,7 +156,7 @@ int Webrtc::connectServer(const std::string &ipAddr)
     });
 
     dataDc->onClosed([this]() {
-        qDebug() << "DataChannel from server closed.";
+        PLOGD << "DataChannel from server closed.";
         dataDc = nullptr;
     });
 
@@ -198,7 +198,7 @@ int Webrtc::sendMessage(RTC_CMD cmd, int timeoutMs, uint8_t *in, int len, uint8_
         });
 
         if (!waited) { /* 没等到表示超时了 */
-            qDebug() << "DataChannel recv time out, message : ";
+            PLOGD << "DataChannel recv time out, message : ";
             return -2;
         }
 
@@ -228,7 +228,7 @@ void Webrtc::processResponse(rtc::message_variant &data)
         if (posChangeCallback) {
             posChangeCallback(param->x, param->y, param->z);
         }
-        qDebug() << "process klippy pos ret ";
+        PLOGD << "process klippy pos ret ";
         resData.clear();
     } else {
         resCond.notify_all();

@@ -6,13 +6,14 @@
 #include <QFileDialog>
 #include <QGraphicsSceneMouseEvent>
 #include <QFileDialog>
+#include "plog/Log.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    ui->ipEdit->setText("172.18.209.63");
+    ui->ipEdit->setText("127.0.0.1");
 
 
     createConnections();
@@ -73,7 +74,7 @@ void MainWindow::showVideoBtn_toggled(bool isChecked)
         QString dev = ui->devComBox->currentText();
         int ret = Webrtc::getInstance()->sendMessage(CMD_SHOW_VIDEO, 3,  (uint8_t *)dev.toStdString().data(), dev.length());
         if (ret != 0) {
-            qDebug() << "showVideoBtn_toggled ret = " << ret;
+            PLOGD << "showVideoBtn_toggled ret = " << ret;
             Utils::warning(this, "Warn", "Open dev " + dev + "failed.");
             QSignalBlocker blocker(ui->showVideoBtn);
             ui->showVideoBtn->setChecked(false);
@@ -136,7 +137,7 @@ void MainWindow::connectServer()
     }
 
     ip.append(":48080");
-    qDebug() <<"connected ip : " << ip;
+    PLOGD <<"connected ip : " << ip;
     int ret = Webrtc::getInstance()->connectServer(ip.toStdString());
     if (ret < 0) {
         Utils::warning(this, "Warn", "连接 " + ip + " 失败！");
@@ -173,7 +174,7 @@ void MainWindow::queryVideoDevs()
     int outLen = 0;
     int ret = Webrtc::getInstance()->sendMessage(CMD_SHOW_DEVS, 3, nullptr, 0, &output, &outLen);
     if (ret != 0) {
-        qDebug() <<" ret = " << ret;
+        PLOGD <<" ret = " << ret;
         Utils::warning(this, "Warn", "Get Devs failed.");
         return;
     }
