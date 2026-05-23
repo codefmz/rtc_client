@@ -80,6 +80,7 @@ void MainWindow::showVideoBtn_toggled(bool isChecked)
             ui->showVideoBtn->setChecked(false);
             return;
         }
+        PLOGD << "showVideoBtn_toggled ret = " << ret;
         ui->showVideoBtn->setText("停止显示");
     } else {
         QString dev = ui->devComBox->currentText();
@@ -90,7 +91,7 @@ void MainWindow::showVideoBtn_toggled(bool isChecked)
             ui->showVideoBtn->setChecked(false);
             return;
         }
-
+        PLOGD << "stop showVideoBtn_toggled ret = " << ret;
         Webrtc::getInstance()->stopShowVideo();
         ui->showVideoBtn->setText("显示视频");
     }

@@ -113,7 +113,6 @@ int Webrtc::connectServer(const std::string &ipAddr)
     rtc::Configuration rtcConfig;
     pc = createPeerConnection(rtcConfig, ws, localId);
 
-
     pc->onTrack([this](shared_ptr<Track> t) {
         string mid = t->mid();
         PLOGD << "Track 2: Received track with mid = " << mid;
@@ -132,6 +131,7 @@ int Webrtc::connectServer(const std::string &ipAddr)
         });
 
         t->onMessage([this](rtc::binary message) {
+            PLOGD << "DataChannel from server received bytes size = " << message.size() << "." ;
             if (mIsSend) {
                 mDecoder->decode(reinterpret_cast<uint8_t *>(message.data()), message.size());
             }

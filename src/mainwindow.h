@@ -30,15 +30,14 @@ public:
 public slots:
     void slotShowVideo(VideoFrame *frame);
     void connectBtn_toggled(bool isChecked);
+    void showVideoBtn_toggled(bool isChecked);
 
 private:
-
     void openVideo();
     void createConnections();
     void connectServer();
     void disConnectServer();
     void addImage(const QString &file);
-    void showVideoBtn_toggled(bool isChecked);
     void slotAddImgs();
     void queryVideoDevs();
 

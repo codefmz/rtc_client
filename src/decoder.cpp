@@ -1,5 +1,5 @@
 #include "decoder.h"
-#include <QDebug>
+#include "plog/Log.h"
 #include <utils.h>
 
 const int RTP_HEADER_SIZE = 12;
@@ -9,24 +9,24 @@ Decoder::Decoder()
 {
     const AVCodec* codec = avcodec_find_decoder_by_name("h264_cuvid");
     if (codec == nullptr) {
-        qDebug() << "avcodec_find_decoder error";
+        PLOGD << "avcodec_find_decoder error";
         return;
     }
 
     mCodecCtx = avcodec_alloc_context3(codec);
     if (mCodecCtx == nullptr) {
-        qDebug() << "avcodec alloc fail.";
+        PLOGD << "avcodec alloc fail.";
         return;
     }
 
     if (av_hwdevice_ctx_create(&hw_device_ctx, AV_HWDEVICE_TYPE_CUDA, nullptr, nullptr, 0) < 0) {
-        qDebug()<< "Failed to create HW device context";
+        PLOGD<< "Failed to create HW device context";
         return;
     }
 
     mCodecCtx->hw_device_ctx = av_buffer_ref(hw_device_ctx);
     if (avcodec_open2(mCodecCtx, codec, nullptr) < 0) {
-        qDebug() <<" Failed to open codec";
+        PLOGD <<" Failed to open codec";
         return;
     }
 
@@ -108,14 +108,14 @@ int Decoder::decode(uint8_t *data, int size)
     int ret = avcodec_send_packet(mCodecCtx, mPacket);
     if (ret < 0) {
         av_packet_unref(mPacket);
-        qDebug() << " avcodec_send_packet fail,  ret = " << ret;
+        PLOGD << " avcodec_send_packet fail,  ret = " << ret;
         return -1;
     }
 
     ret = avcodec_receive_frame(mCodecCtx, mHwFrame);
     if (ret < 0) {
         av_packet_unref(mPacket);
-        qDebug() << " avcodec_receive_frame fail, ret = " << ret;
+        PLOGD << " avcodec_receive_frame fail, ret = " << ret;
          return -1;
     }
 
@@ -124,16 +124,17 @@ int Decoder::decode(uint8_t *data, int size)
     mSwFrame->height = mHwFrame->height;
 
     if (av_frame_get_buffer(mSwFrame, 32) < 0) {
-        qDebug() << "Failed to alloc buffer for sw_frame";
+        PLOGD << "Failed to alloc buffer for sw_frame";
         return -1;
     }
 
     ret = av_hwframe_transfer_data(mSwFrame, mHwFrame, 0);
     if (ret < 0) {
-        qDebug() <<  "av_hwframe_transfer_data fail. ";
+        PLOGD <<  "av_hwframe_transfer_data fail. ";
         return -1;
     }
 
+    PLOGD << "decode frame, width = " << mSwFrame->width << ", height = " << mSwFrame->height;
     praseFrame(mSwFrame);
     av_packet_unref(mPacket);
     return 0;

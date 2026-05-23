@@ -1,24 +1,17 @@
-﻿
-2026-05-22 17:17:26.962 DEBUG [26372] [VideoWidget::initializeGL@60] initializeGL called.
-2026-05-22 17:17:26.972 DEBUG [26372] [VideoWidget::resizeGL@143] resizeGL, window_W = 479, window_H = 713
-2026-05-22 17:17:27.169 DEBUG [26372] [VideoWidget::resizeGL@143] resizeGL, window_W = 1499, window_H = 979
-2026-05-22 17:26:25.465 DEBUG [27132] [VideoWidget::initializeGL@60] initializeGL called.
-2026-05-22 17:26:25.473 DEBUG [27132] [VideoWidget::resizeGL@143] resizeGL, window_W = 479, window_H = 713
-2026-05-22 17:26:25.658 DEBUG [27132] [VideoWidget::resizeGL@143] resizeGL, window_W = 1499, window_H = 979
-2026-05-22 17:26:29.806 DEBUG [12428] [VideoWidget::initializeGL@60] initializeGL called.
-2026-05-22 17:26:29.816 DEBUG [12428] [VideoWidget::resizeGL@143] resizeGL, window_W = 479, window_H = 713
-2026-05-22 17:26:29.982 DEBUG [12428] [VideoWidget::resizeGL@143] resizeGL, window_W = 1499, window_H = 979
-2026-05-22 17:26:31.459 DEBUG [12428] [VideoWidget::resizeGL@143] resizeGL, window_W = 479, window_H = 713
-2026-05-22 17:26:34.637 DEBUG [30364] [VideoWidget::initializeGL@60] initializeGL called.
-2026-05-22 17:26:34.647 DEBUG [30364] [VideoWidget::resizeGL@143] resizeGL, window_W = 479, window_H = 713
-2026-05-22 17:26:34.835 DEBUG [30364] [VideoWidget::resizeGL@143] resizeGL, window_W = 1499, window_H = 979
-2026-05-22 17:26:36.001 DEBUG [30364] [VideoWidget::resizeGL@143] resizeGL, window_W = 479, window_H = 713
-2026-05-22 17:26:40.722 DEBUG [29396] [VideoWidget::initializeGL@60] initializeGL called.
-2026-05-22 17:26:40.757 DEBUG [29396] [VideoWidget::resizeGL@143] resizeGL, window_W = 479, window_H = 713
-2026-05-22 17:26:40.937 DEBUG [29396] [VideoWidget::resizeGL@143] resizeGL, window_W = 1499, window_H = 979
-2026-05-22 17:26:42.060 DEBUG [29396] [VideoWidget::resizeGL@143] resizeGL, window_W = 479, window_H = 713
-2026-05-22 17:30:38.480 DEBUG [22636] [VideoWidget::initializeGL@60] initializeGL called.
-2026-05-22 17:30:38.490 DEBUG [22636] [VideoWidget::resizeGL@143] resizeGL, window_W = 479, window_H = 713
-2026-05-22 17:30:38.512 DEBUG [22636] [VideoWidget::resizeGL@143] resizeGL, window_W = 1499, window_H = 979
-2026-05-22 17:30:44.246 DEBUG [22636] [VideoWidget::resizeGL@143] resizeGL, window_W = 479, window_H = 713
-2026-05-22 17:30:54.098 DEBUG [22636] [VideoWidget::resizeGL@143] resizeGL, window_W = 1499, window_H = 979
+﻿2026-05-23 17:27:20.218 DEBUG [25784] [main@27] init Qt log
+2026-05-23 17:27:22.350 DEBUG [25784] [VideoWidget::initializeGL@60] initializeGL called.
+2026-05-23 17:27:22.364 DEBUG [25784] [VideoWidget::resizeGL@143] resizeGL, window_W = 479, window_H = 713
+2026-05-23 17:27:22.389 DEBUG [25784] [VideoWidget::resizeGL@143] resizeGL, window_W = 1499, window_H = 979
+2026-05-23 17:28:52.055 DEBUG [25784] [VideoWidget::resizeGL@143] resizeGL, window_W = 479, window_H = 713
+2026-05-23 17:28:54.220 DEBUG [25784] [MainWindow::connectServer@141] connected ip : 127.0.0.1:48080
+2026-05-23 17:28:54.385 DEBUG [16968] [Webrtc::connectServer::<lambda_1>::operator ()@62]  open ws success.
+2026-05-23 17:28:54.402 DEBUG [16968] [Webrtc::connectServer::<lambda_4>::operator ()@77] WebSocketServer: Received string message: {"description":"v=0\r\no=rtc 4290536061 0 IN IP4 127.0.0.1\r\ns=-\r\nt=0 0\r\na=group:BUNDLE 0\r\na=msid-semantic:WMS *\r\na=ice-options:ice2,trickle\r\na=fingerprint:sha-256 39:11:97:6F:29:F3:AB:9F:DF:B8:A2:0A:CC:2C:10:57:D1:B2:0A:56:1C:D4:B3:8C:87:F3:8E:86:4B:60:C8:B1\r\nm=application 9 UDP/DTLS/SCTP webrtc-datachannel\r\nc=IN IP4 0.0.0.0\r\na=mid:0\r\na=sendrecv\r\na=sctp-port:5000\r\na=max-message-size:262144\r\na=setup:active\r\na=ice-ufrag:YjLN\r\na=ice-pwd:zLa2fVmHmcc8CC2RvDG7EP\r\n","id":"server","type":"answer"}
+2026-05-23 17:28:54.403 DEBUG [16968] [Webrtc::connectServer::<lambda_4>::operator ()@77] WebSocketServer: Received string message: {"description":"v=0\r\no=rtc 1447430331 0 IN IP4 127.0.0.1\r\ns=-\r\nt=0 0\r\na=group:BUNDLE 0\r\na=msid-semantic:WMS *\r\na=ice-options:ice2,trickle\r\na=fingerprint:sha-256 39:11:97:6F:29:F3:AB:9F:DF:B8:A2:0A:CC:2C:10:57:D1:B2:0A:56:1C:D4:B3:8C:87:F3:8E:86:4B:60:C8:B1\r\nm=application 9 UDP/DTLS/SCTP webrtc-datachannel\r\nc=IN IP4 0.0.0.0\r\na=mid:0\r\na=sendrecv\r\na=sctp-port:5000\r\na=max-message-size:262144\r\na=setup:actpass\r\na=ice-ufrag:YjLN\r\na=ice-pwd:zLa2fVmHmcc8CC2RvDG7EP\r\nm=video 0 UDP/TLS/RTP/SAVPF 96\r\nc=IN IP4 0.0.0.0\r\na=mid:video\r\na=sendonly\r\na=ssrc:42 cname:video-send\r\na=rtcp-mux\r\na=rtpmap:96 H264/90000\r\na=rtcp-fb:96 nack\r\na=rtcp-fb:96 nack pli\r\na=rtcp-fb:96 goog-remb\r\na=fmtp:96 profile-level-id=42e01f;packetization-mode=1;level-asymmetry-allowed=1\r\na=setup:actpass\r\na=ice-ufrag:YjLN\r\na=ice-pwd:zLa2fVmHmcc8CC2RvDG7EP\r\n","id":"server","type":"offer"}
+2026-05-23 17:28:54.404 DEBUG [16968] [Webrtc::connectServer::<lambda_5>::operator ()@118] Track 2: Received track with mid = video
+2026-05-23 17:28:54.404 DEBUG [16968] [Webrtc::connectServer::<lambda_5>::()::<lambda_2>::operator ()@129] Track 2: Track with mid = video closed.
+2026-05-23 17:28:55.337 DEBUG [16968] [Webrtc::connectServer::<lambda_4>::operator ()@77] WebSocketServer: Received string message: {"candidate":"a=candidate:1 1 UDP 2122317823 192.168.136.1 49950 typ host","id":"server","mid":"0","type":"candidate"}
+2026-05-23 17:28:55.338 DEBUG [16968] [Webrtc::connectServer::<lambda_4>::operator ()@77] WebSocketServer: Received string message: {"candidate":"a=candidate:2 1 UDP 2122317567 172.18.30.140 49950 typ host","id":"server","mid":"0","type":"candidate"}
+2026-05-23 17:28:55.374 DEBUG [11184] [Webrtc::connectServer::<lambda_6>::operator ()@149] DataChannel from server open.
+2026-05-23 17:28:55.375 DEBUG [25784] [Webrtc::connectServer::<lambda_3>::operator ()@72] Client WebSocket: Closed
+2026-05-23 17:28:57.834 DEBUG [25784] [MainWindow::showVideoBtn_toggled@83] showVideoBtn_toggled ret = 0
+2026-05-23 17:29:29.787 DEBUG [30220] [Webrtc::connectServer::<lambda_8>::operator ()@159] DataChannel from server closed.

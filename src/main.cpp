@@ -24,6 +24,7 @@ int main(int argc, char *argv[])
     std::shared_ptr<Decoder> decoder = std::make_shared<Decoder>();
     Webrtc::getInstance()->setDecoder(decoder);
 
+    PLOGD << "init Qt log";
     MainWindow w;
     QObject::connect(decoder.get(), &Decoder::signalNewFrame, &w, &MainWindow::slotShowVideo);
 
