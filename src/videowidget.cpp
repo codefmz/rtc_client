@@ -185,7 +185,7 @@ void VideoWidget::paintGL()
         glTexImage2D(GL_TEXTURE_2D, 0, GL_R8, mVideoW, mVideoH, 0, GL_RED, GL_UNSIGNED_BYTE, yuv420Data);
         mShaderProgram->setUniformValue("texY", 0); // 将纹理单元0传递给着色器中的uniform变量textureY
 
-        PLOGD << "VideoWidget::paintGL, mVideoW = " << mVideoW << ", mVideoH = " << mVideoH;
+        PLOGV << "VideoWidget::paintGL, mVideoW = " << mVideoW << ", mVideoH = " << mVideoH;
         glActiveTexture(GL_TEXTURE1);
         mTextureUV->bind();
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RG8, mVideoW / 2, mVideoH / 2, 0, GL_RG, GL_UNSIGNED_BYTE, uvPlane);

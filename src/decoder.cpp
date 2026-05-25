@@ -116,7 +116,7 @@ int Decoder::decode(uint8_t *data, int size)
     if (ret < 0) {
         av_packet_unref(mPacket);
         PLOGD << " avcodec_receive_frame fail, ret = " << ret;
-         return -1;
+        return -1;
     }
 
     mSwFrame->format = AV_PIX_FMT_NV12;
@@ -134,7 +134,8 @@ int Decoder::decode(uint8_t *data, int size)
         return -1;
     }
 
-    PLOGD << "decode frame, width = " << mSwFrame->width << ", height = " << mSwFrame->height;
+    static int frameCount = 0;
+    PLOGD << "Frame " << frameCount++;
     praseFrame(mSwFrame);
     av_packet_unref(mPacket);
     return 0;

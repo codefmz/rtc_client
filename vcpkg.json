@@ -10,7 +10,8 @@
     },
     {
         "name": "libdatachannel",
-        "version>=": "0.23.2"
+        "version>=": "0.23.2",
+        "features": ["srtp"]
     },
     {
       "name": "opencv4",

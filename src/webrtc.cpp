@@ -111,37 +111,32 @@ int Webrtc::connectServer(const std::string &ipAddr)
     }
 
     rtc::Configuration rtcConfig;
+    rtcConfig.disableAutoNegotiation = true; // 手动协商
     pc = createPeerConnection(rtcConfig, ws, localId);
 
-    pc->onTrack([this](shared_ptr<Track> t) {
-        string mid = t->mid();
-        PLOGD << "Track 2: Received track with mid = " << mid;
-        if (mid != "video") {
-            PLOGD << "Wrong track mid";
-            return;
-        }
-
-        t->onOpen([mid]() {
-            PLOGD << "Track 2: Track with mid = " << mid << " opened.";
-        });
-
-        t->onClosed([this, mid]() {
-            PLOGD << "Track 2: Track with mid = " << mid << " closed.";
-            track = nullptr;
-        });
-
-        t->onMessage([this](rtc::binary message) {
-            PLOGD << "DataChannel from server received bytes size = " << message.size() << "." ;
-            if (mIsSend) {
-                mDecoder->decode(reinterpret_cast<uint8_t *>(message.data()), message.size());
-            }
-        }, nullptr);
-
-        std::atomic_store(&track, t);
+    rtc::Description::Video video("video", rtc::Description::Direction::RecvOnly);
+    video.addH264Codec(96);
+    track = pc->addTrack(video);
+    track->onOpen([this]() {
+        PLOGD << "Track 2: Track with mid = " << track->mid() << " opened.";
     });
+
+    track->onClosed([this]() {
+        PLOGD << "Track 2: Track with mid = " << track->mid() << " closed.";
+        track = nullptr;
+    });
+
+    track->onMessage([this](rtc::binary message) {
+        // PLOGD << "DataChannel from server received bytes size = " << message.size() << "." ;
+        if (mIsSend) {
+            mDecoder->decode(reinterpret_cast<uint8_t *>(message.data()), message.size());
+        }
+    }, nullptr);
 
     const std::string label = "rtc_ctl";
     dataDc = pc->createDataChannel(label);
+
+    pc->setLocalDescription();
     wsPromise = std::promise<void>();
     wsFuture = wsPromise.get_future();
 
